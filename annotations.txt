@@ -1,3 +1,102 @@
 vue create vuelearn
 yarn serve
 
+### BINDING ONE WAY ###
+to display variable data in HTML, add ":" behind the attribute
+Exemple:
+
+<input type="text" :value="name"> 
+
+<script>
+export default {
+    data(){
+        return{
+            name: "Heyyyyy",
+        }
+    }
+}
+</script>
+
+the value of input will be set "Heyyyy"
+
+################
+
+###### BINDING TWO WAY ######
+
+
+replace the attribute to '' v-model '' to apply binding two WAY
+
+<input type="text" v-model="name">
+<p>{{name}}</p>
+
+<script>
+export default {
+    data(){
+        return{
+            name: "Heyyeyeyeyeye tati tati",
+        }
+    }
+}
+</script>
+
+############### PROPS ###########
+the data will be sent through the props to the child container
+
+<template>
+  <div id="app">
+    <h1>Guia Clientes</h1>
+    <input type="text" v-model="user.name"/>
+    <Cliente :client="user"/>
+    <Cliente :client="user"/>
+    <Cliente :client="user"/>
+  </div>
+</template>
+
+<script>
+import Cliente from './components/Cliente';
+//import Produto from './components/Produto';
+export default {
+  data(){
+    return{
+      nomeDoVictor: "Victor Limaa",
+      user:{
+        name: "Victor",
+        number:"(22)5129219",
+        email:"aiaipapito@gmail.com",
+        age:12,
+        description:"eita maluco doideira"
+      }
+    }
+  },
+  name: 'App',
+  components: {
+    Cliente,
+    //Produto
+  }
+
+}
+</script>
+
+
+THE CHILD 
+
+<template>
+    <div id="cliente">
+        <h4>Name: {{client.name}}</h4>
+        <p>Description: {{client.description}}</p>
+        <p>Number: {{client.number}}</p>
+        <p>Email: {{client.email}}</p>
+        <p>Age: {{client.age}}</p>
+    </div>
+    
+</template>
+
+<script>
+export default {
+    props: {
+        client:Object
+    }
+}
+</script>
+
+#####################
