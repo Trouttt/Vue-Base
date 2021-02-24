@@ -100,3 +100,19 @@ export default {
 </script>
 
 #####################
+
+for the value to be seen as int or boolean, you must bind the property
+ex: :showAge="true"
+showAge receives boolean data
+it is necessary to bind the attribute so that the date is not recognized as a string
+
+
+
+        <p v-if="showAge == true">Age: {{client.age}}</p>
+        <p v-else-if="showAge == false"></p>
+        <p v-else> O usuário não tem idade, é doido</p>
+
+<p v-show="showAge == true> v-show is the same as v-if, however, v-show is in html, 
+while v-if is deleted </p>
+
+V-IF
