@@ -115,4 +115,55 @@ it is necessary to bind the attribute so that the date is not recognized as a st
 <p v-show="showAge == true> v-show is the same as v-if, however, v-show is in html, 
 while v-if is deleted </p>
 
-V-IF
+###########################
+
+conditional in class
+
+<div :class="{'client': !isPremium, 'client-premium': isPremium}">
+
+    data(){
+        return{
+            isPremium: true
+        }
+    },
+
+#########################
+
+v-for 
+
+   <div v-for="user in users" :key="user.id">
+      <Cliente :client="user"/>
+    </div>
+
+  data(){
+    return{
+      users:[
+        {
+          id:1,
+
+          name: "Leonardo",
+          number:"(55)959219",
+          email:"aiaigsagsaqe@gmail.com",
+          age:20,
+          description:"arroz doce"
+        },
+        {
+          id:3,
+          name: "Tiktok",
+          number:"(20)5129219",
+          email:"attttttt@gmail.com",
+          age:30,
+          description:"juvenal"
+        },
+        {
+          id:10,
+          name: "Vfsafastor",
+          number:"(22)5114219",
+          email:"aiairqwrwqpito@gmail.com",
+          age:42,
+          description:"TATIANE MEU AMOR"
+        }
+      ]
+    }
+
+######################################
