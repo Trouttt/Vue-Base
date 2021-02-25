@@ -10,6 +10,7 @@
         <button @click="changeColor($event)">Mudar cor!</button>
         <button @click="sendDeleteEvent()">Deletar</button>
 
+        <h4>special id: {{idSpecial}}</h4>
     </div>
     
 </template>
@@ -45,7 +46,7 @@ export default {
     },
     computed:{
         idSpecial: function (){
-            return (this.cliente.name + this.client.email).toUpperCase();
+            return (this.client.name + this.client.email).toUpperCase();
         }
     }
 }

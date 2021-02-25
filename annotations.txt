@@ -203,9 +203,18 @@ EVENTS
 
       <p>Email: {{client.email | processEmail()}}</p>
 
-      
+
       filters:{
         processEmail: function(value){
             return value.toUpperCase();
+        }
+    }
+
+    ###################### COMPUTED PROPERTIES #############
+
+  it's a method that will return a value
+      computed:{
+        idSpecial: function (){
+            return (this.cliente.name + this.client.email).toUpperCase();
         }
     }
