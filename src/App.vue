@@ -1,10 +1,15 @@
 <template>
   <div id="app">
-    <h1>Guia Clientes</h1>
-    <input type="text" v-model="user.name"/>
+    <h2>Cadastro:</h2>
+    <input type="text" placeholder="name" v-model="nameField"> <br>
+    <p v-if="nameValidation == true">Nome inválido!</p>
+    <input type="email" placeholder="email" v-model="emailField"> <br>
+    <input type="number" placeholder="age" v-model="ageField"> <br>
+    <button @click="userRegister">Cadastrar</button>
+  
     <div v-for="(user, index) in users" :key="user.id">
       <h3>{{ index }}</h3>
-      <Cliente :client="user"/>
+      <Cliente :client="user" @meDelete="deleteUser($event)"/>
     </div>
   </div>
 </template>
@@ -15,14 +20,10 @@ import Cliente from './components/Cliente';
 export default {
   data(){
     return{
-      nomeDoVictor: "Victor Limaa",
-      user:{
-        name: "Victor",
-        number:"(22)5129219",
-        email:"fsafsito@gmail.com",
-        age:12,
-        description:"eita maluco doideira"
-      },
+      nameField: "",
+      emailField: "",
+      ageField: "",
+      nameValidation: false,
       users:[
         {
           id:1,
@@ -56,6 +57,32 @@ export default {
   components: {
     Cliente,
     //Produto
+  },
+  methods:{
+    userRegister: function(){
+      if(this.nameField == "" || this.nameField == " " || this.nameField < 3){
+        console.log("erro de validação");
+        this.nameValidation = true;
+      }else{
+        this.users.push({
+        id:Date.now(),
+        name:this.nameField,
+        email: this.emailField,
+        age: this.ageField
+      })
+      this.nameField = "";
+      this.emailField = "";
+      this.ageField = "";
+      this.nameValidation = false;
+      } //if user.id == id, he will be removed from the array
+  
+    },
+    deleteUser: function($event){
+      console.log("Recebendo evento!");
+      var id = $event.userId;
+      var newArray = this.users.filter(user => user.id != id); //if user.id is the same than id, he will be removed from the array
+      this.users = newArray;
+    }
   }
 
 }

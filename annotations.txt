@@ -167,3 +167,45 @@ v-for
     }
 
 ######################################
+
+EVENTS
+
+  <button @click="userRegister">Cadastrar</button>
+
+      methods:{
+        changeColor: function($event){
+            console.log($event); 
+            this.isPremium = !this.isPremium;
+        }
+    }
+
+
+    Flow:
+    The child component named ''Cliente'': 
+    <button @click="sendDeleteEvent()">Deletar</button>
+
+    sendDeleteEvent: function(){
+        console.log("Emitindo do filho");
+        this.$emit("meDelete", {userId:this.client.id, component: this});
+    },
+
+  The father component:
+  <Cliente :client="user" @meDelete="deleteUser($event)"/>
+  
+  deleteUser: function($event){
+    console.log("Recebendo evento!");
+    var id = $event.userId;
+    var newArray = this.users.filter(user => user.id != id); //if user.id is the same than id, he will be removed from the array
+    this.users = newArray;
+  }
+
+  ############################ FILTERS ########
+
+      <p>Email: {{client.email | processEmail()}}</p>
+
+      
+      filters:{
+        processEmail: function(value){
+            return value.toUpperCase();
+        }
+    }

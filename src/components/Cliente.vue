@@ -1,13 +1,14 @@
 <template>
     <div :class="{'client': !isPremium, 'client-premium': isPremium}">
         <h4>Name: {{client.name}}</h4>
-        <p>Description: {{client.description}}</p>
+        <p>Description: {{client.description }}</p>
         <p>Number: {{client.number}}</p>
-        <p>Email: {{client.email}}</p>
+        <p>Email: {{client.email | processEmail()}}</p>
         <p v-if="showAge == true">Age: {{client.age}}</p>
         <p v-else> O usuário não tem idade, é doido</p>
 
         <button @click="changeColor($event)">Mudar cor!</button>
+        <button @click="sendDeleteEvent()">Deletar</button>
 
     </div>
     
@@ -28,6 +29,18 @@ export default {
         changeColor: function($event){
             console.log($event); 
             this.isPremium = !this.isPremium;
+        },
+        sendDeleteEvent: function(){
+            console.log("Emitindo do filho");
+            this.$emit("meDelete", {userId:this.client.id, component: this});
+        },
+        tiktok:function(){
+            console.log("tiktok");
+        }
+    },
+    filters:{
+        processEmail: function(value){
+            return value.toUpperCase();
         }
     }
 }
