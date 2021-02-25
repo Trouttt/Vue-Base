@@ -42,6 +42,11 @@ export default {
         processEmail: function(value){
             return value.toUpperCase();
         }
+    },
+    computed:{
+        idSpecial: function (){
+            return (this.cliente.name + this.client.email).toUpperCase();
+        }
     }
 }
 </script>
